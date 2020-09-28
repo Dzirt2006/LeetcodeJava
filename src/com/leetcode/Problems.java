@@ -4,6 +4,28 @@ import java.util.*;
 
 public class Problems {
 
+    private HashMap<String, String> mapStorage = new HashMap<>();
+
+    {
+
+    }
+
+    //-----------------------------------------------------------------------------palindrome number-----------------
+
+    public static int[] slicer(int[] arr, int start, int end) {
+        // Get the slice of the Array
+        int[] slice = new int[end - start];
+        // Copy elements of arr to slice
+        for (int i = 0; i < slice.length; i++) {
+            slice[i] = arr[start + i];
+        }
+        // return the slice
+        System.out.println("Slice " + Arrays.toString(slice));
+        return slice;
+    }
+
+    //------------------------------------------------------------------------------Search in Rotated Sorted Array----------------
+
     //--------------------------------------------------------Array twoSum------------------easy-----------------------------------------------
     protected int[] twoSumBrute(int[] arr, int target) {
         int[] res = new int[2];
@@ -27,6 +49,9 @@ public class Problems {
         return res;
     }
 
+
+//-------------------------------------------------------------------------------------------202 Happy Number------------------------------------------------------
+
     protected int[] twoSumNice(int[] arr, int target) {
         Map<Integer, Integer> table = new Hashtable<>();
         for (int i = 0; i < arr.length; i++) {
@@ -41,8 +66,6 @@ public class Problems {
         throw new IllegalArgumentException("Achtung!");
     }
 
-    //-----------------------------------------------------------------------------palindrome number-----------------
-
     protected boolean isPalindrome(int x) {
         if (x < 0) return false;
         long palindrome = 0L;
@@ -52,11 +75,8 @@ public class Problems {
             palindrome = (long) ((palindrome + end) * 10);
             reverse = (reverse / 10);
         }
-        System.out.println("final palindrome " + palindrome);
         return palindrome == x;
     }
-
-    //------------------------------------------------------------------------------Search in Rotated Sorted Array----------------
 
     /**
      * Input: nums = [4,5,6,7,0,1,2], target = 0
@@ -104,9 +124,6 @@ public class Problems {
         return arr[start] == target ? start : -1;
     }
 
-
-//-------------------------------------------------------------------------------------------202 Happy Number------------------------------------------------------
-
     public int singleNumber(int[] nums) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int number : nums) {
@@ -134,6 +151,8 @@ public class Problems {
         return false;
     }
 
+//-----------------------------------------------------------------------------------349 Intersection of Two Arrays----------------------------------------
+
     //-----------------------------------------------------------------------------------242 valid anagram--------------------------------------------------
     public boolean isAnagram(String s, String t) {
         char[] c1 = s.toCharArray();
@@ -160,6 +179,8 @@ public class Problems {
         }
         return true;
     }
+
+    //------------------------------------------------------------------------------------535  Encode and Decode TinyURL-----------------------------------------------------------------
 
     //----------------------------------------------------------------------------------find difference-------------------------------------------
     public char findTheDifference(String s, String t) {
@@ -193,8 +214,6 @@ public class Problems {
         return 0;
     }
 
-//-----------------------------------------------------------------------------------349 Intersection of Two Arrays----------------------------------------
-
     public int[] intersection(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int[] arr = new int[Math.min(nums1.length, nums2.length)];
@@ -213,35 +232,75 @@ public class Problems {
         return arr;
     }
 
-    //------------------------------------------------------------------------------------535  Encode and Decode TinyURL-----------------------------------------------------------------
-
-    private HashMap<String,String> mapStorage=new HashMap<>();
-
     // Encodes a URL to a shortened URL.
     public String encode(String longUrl) {
-        String gen=getRandomHexString(6);
-        mapStorage.put(gen,longUrl);
-        return "http://tinyurl.com/"+gen;
+        String gen = getRandomHexString(6); // or use .hashCode() - int
+        mapStorage.put(gen, longUrl);
+        return "http://tinyurl.com/" + gen;
     }
 
     // Decodes a shortened URL to its original URL.
     public String decode(String shortUrl) {
-        String get=shortUrl.substring(19);
+        String get = shortUrl.substring(19);
         return mapStorage.get(get);
     }
 
-    protected String getRandomHexString(int numchars){
+    protected String getRandomHexString(int numchars) {
         Random r = new Random();
         StringBuilder sb = new StringBuilder();
-        while(sb.length() < numchars){
+        while (sb.length() < numchars) {
             sb.append(Integer.toHexString(r.nextInt()));
         }
         System.out.println(sb.substring(2));
         return sb.toString();
     }
 
-    //-----------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------merge sort-------------------
+    protected int[] mergeSort(int[] arr) {
+        if (arr.length == 2) {
+            if (arr[0] > arr[1]) {
+                int temp = arr[0];
+                arr[0] = arr[1];
+                arr[1] = temp;
+            }
+            return arr;
+        } else if (arr.length < 2) {
+            return arr;
+        } else {
+            System.out.println(arr.length / 2);
+            int[] leftArr = mergeSort(slicer(arr, 0, arr.length / 2));
+            int[] rightArr = mergeSort(slicer(arr, arr.length / 2, arr.length));
+            int left = 0;
+            int right = 0;
+            int newIndx = 0;
+            int[] newArr = new int[arr.length];
+            while (left < leftArr.length && right < rightArr.length) {
+                if (leftArr[left] < rightArr[right]) {
+                    newArr[newIndx] = leftArr[left];
+                    left++;
+                } else {
+                    newArr[newIndx] = rightArr[right];
+                    right++;
+                }
+                newIndx++;
+            }
+            while (left < leftArr.length) {
+                newArr[newIndx] = leftArr[left];
+                left++;
+                newIndx++;
+            }
+            while (right < rightArr.length) {
+                newArr[newIndx] = rightArr[right];
+                right++;
+                newIndx++;
+            }
+            return newArr;
+        }
+    }
+
+
 }
+
 
 
 
