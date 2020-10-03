@@ -12,8 +12,8 @@ public class MainLeetCode {
 //        instance.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 1);
 //        System.out.println(instance.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 7));
 //        System.out.println(instance.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 4));
-        int[]arr=instance.mergeSort(new int[]{4, 5, 6, 7, 0, 1, 2});
-        System.out.println(Arrays.toString(instance.mergeSort(new int[]{4,-1,3,6, 7, 0, 1,5, 2})));
+//        int[]arr=instance.mergeSort(new int[]{4, 5, 6, 7, 0, 1, 2});
+//        System.out.println(Arrays.toString(instance.mergeSort(new int[]{4,-1,3,6, 7, 0, 1,5, 2})));
 //        for(int i: arr){
 //            System.out.println(arr[i]);
 //        }
@@ -21,6 +21,7 @@ public class MainLeetCode {
         BinaryTree tree = new BinaryTree();
 //        System.out.println(tree.maxDepth(tree.mainTree));
 
-
+        Double num=Double.valueOf("120D");
+        System.out.println(num);
     }
 }

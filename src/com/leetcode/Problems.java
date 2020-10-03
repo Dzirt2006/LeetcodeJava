@@ -6,25 +6,10 @@ public class Problems {
 
     private HashMap<String, String> mapStorage = new HashMap<>();
 
-    {
+    Sortings sortEx=new Sortings();
 
-    }
 
     //-----------------------------------------------------------------------------palindrome number-----------------
-
-    public static int[] slicer(int[] arr, int start, int end) {
-        // Get the slice of the Array
-        int[] slice = new int[end - start];
-        // Copy elements of arr to slice
-        for (int i = 0; i < slice.length; i++) {
-            slice[i] = arr[start + i];
-        }
-        // return the slice
-        System.out.println("Slice " + Arrays.toString(slice));
-        return slice;
-    }
-
-    //------------------------------------------------------------------------------Search in Rotated Sorted Array----------------
 
     //--------------------------------------------------------Array twoSum------------------easy-----------------------------------------------
     protected int[] twoSumBrute(int[] arr, int target) {
@@ -49,8 +34,7 @@ public class Problems {
         return res;
     }
 
-
-//-------------------------------------------------------------------------------------------202 Happy Number------------------------------------------------------
+    //------------------------------------------------------------------------------Search in Rotated Sorted Array----------------
 
     protected int[] twoSumNice(int[] arr, int target) {
         Map<Integer, Integer> table = new Hashtable<>();
@@ -65,6 +49,9 @@ public class Problems {
         }
         throw new IllegalArgumentException("Achtung!");
     }
+
+
+//-------------------------------------------------------------------------------------------202 Happy Number------------------------------------------------------
 
     protected boolean isPalindrome(int x) {
         if (x < 0) return false;
@@ -151,8 +138,6 @@ public class Problems {
         return false;
     }
 
-//-----------------------------------------------------------------------------------349 Intersection of Two Arrays----------------------------------------
-
     //-----------------------------------------------------------------------------------242 valid anagram--------------------------------------------------
     public boolean isAnagram(String s, String t) {
         char[] c1 = s.toCharArray();
@@ -180,7 +165,7 @@ public class Problems {
         return true;
     }
 
-    //------------------------------------------------------------------------------------535  Encode and Decode TinyURL-----------------------------------------------------------------
+//-----------------------------------------------------------------------------------349 Intersection of Two Arrays----------------------------------------
 
     //----------------------------------------------------------------------------------find difference-------------------------------------------
     public char findTheDifference(String s, String t) {
@@ -207,6 +192,8 @@ public class Problems {
         }
         return '0';
     }
+
+    //------------------------------------------------------------------------------------535  Encode and Decode TinyURL-----------------------------------------------------------------
 
     //---------------------------------------------------------------------------------Longest Palindrome------?????????????------------------------------------
     public int longestPalindrome(String s) {
@@ -255,48 +242,8 @@ public class Problems {
         return sb.toString();
     }
 
-    //----------------------------------------------------------------------------------------------merge sort-------------------
-    protected int[] mergeSort(int[] arr) {
-        if (arr.length == 2) {
-            if (arr[0] > arr[1]) {
-                int temp = arr[0];
-                arr[0] = arr[1];
-                arr[1] = temp;
-            }
-            return arr;
-        } else if (arr.length < 2) {
-            return arr;
-        } else {
-            System.out.println(arr.length / 2);
-            int[] leftArr = mergeSort(slicer(arr, 0, arr.length / 2));
-            int[] rightArr = mergeSort(slicer(arr, arr.length / 2, arr.length));
-            int left = 0;
-            int right = 0;
-            int newIndx = 0;
-            int[] newArr = new int[arr.length];
-            while (left < leftArr.length && right < rightArr.length) {
-                if (leftArr[left] < rightArr[right]) {
-                    newArr[newIndx] = leftArr[left];
-                    left++;
-                } else {
-                    newArr[newIndx] = rightArr[right];
-                    right++;
-                }
-                newIndx++;
-            }
-            while (left < leftArr.length) {
-                newArr[newIndx] = leftArr[left];
-                left++;
-                newIndx++;
-            }
-            while (right < rightArr.length) {
-                newArr[newIndx] = rightArr[right];
-                right++;
-                newIndx++;
-            }
-            return newArr;
-        }
-    }
+
+    //-----------------------------------------------------------------------------------------------------1331--------
 
 
 }
