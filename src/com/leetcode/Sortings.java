@@ -11,7 +11,6 @@ public class Sortings {
             slice[i] = arr[start + i];
         }
         // return the slice
-        System.out.println("Slice " + Arrays.toString(slice));
         return slice;
     }
 
@@ -27,7 +26,6 @@ public class Sortings {
         } else if (arr.length < 2) {
             return arr;
         } else {
-            System.out.println(arr.length / 2);
             int[] leftArr = mergeSort(slicer(arr, 0, arr.length / 2));
             int[] rightArr = mergeSort(slicer(arr, arr.length / 2, arr.length));
             int left = 0;

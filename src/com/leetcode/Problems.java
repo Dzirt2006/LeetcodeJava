@@ -4,9 +4,8 @@ import java.util.*;
 
 public class Problems {
 
+    Sortings sort = new Sortings();
     private HashMap<String, String> mapStorage = new HashMap<>();
-
-    Sortings sortEx=new Sortings();
 
 
     //-----------------------------------------------------------------------------palindrome number-----------------
@@ -244,6 +243,25 @@ public class Problems {
 
 
     //-----------------------------------------------------------------------------------------------------1331--------
+    public int[] arrayRankTransform(int[] inpArr) {
+        int[] res = new int[inpArr.length];
+        int[] arr = sort.mergeSort(inpArr);
+        HashMap<Integer, Integer> store = new HashMap<>(inpArr.length);
+
+        int rank = 1;
+            for (int i = 0; i < arr.length; i++) {
+                if (i > 0) {
+                    if (arr[i] > arr[i - 1]) {
+                        rank++;
+                    }
+                }
+                store.put(arr[i],rank);
+            }
+        for (int i = 0; i < inpArr.length; i++) {
+           res[i]= store.get(inpArr[i]);
+        }
+        return res;
+    }
 
 
 }
