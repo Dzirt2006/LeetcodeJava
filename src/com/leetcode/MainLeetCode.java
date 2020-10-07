@@ -17,8 +17,8 @@ public class MainLeetCode {
 //        for(int i: arr){
 //            System.out.println(arr[i]);
 //        }
-
-        System.out.println(Arrays.toString(instance.arrayRankTransform(new int[]{1,1,1})));
+        System.out.println(instance);
+//        System.out.println(Arrays.toString(instance.arrayRankTransform(new int[]{1,1,1})));
         //trees
         BinaryTree tree = new BinaryTree();
 //        System.out.println(tree.maxDepth(tree.mainTree));
