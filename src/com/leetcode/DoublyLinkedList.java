@@ -29,68 +29,79 @@ class DoublyLinkedList {
                 this.tail = node;
                 pointer.next = this.tail;
                 this.tail.prev = pointer;
+                this.tail.next = null;
             } else {
                 this.tail = node;
                 this.tail.prev = this.head;
                 this.head.next = this.tail;
+                this.tail.next = null;
             }
         }
 
         public void insertBefore(Node node, Node nodeToMove) { //move existing node to position before
-            Node prev;
-            Node next;
-            if (nodeToMove.equals(this.head)) {
-                this.head = nodeToMove.next;
-                this.head.prev = null;
-            } else if (nodeToMove.equals(this.tail)) {
-                this.tail = nodeToMove.prev;
-                this.tail.next = null;
-            } else {
-                //set the pointers to prev and next nodes
-                prev = nodeToMove.prev;
-                next = nodeToMove.next;
-                //cut the node from the chain
-                prev.next = next;
-                next.prev = prev;
-            }
+            if(nodeToMove.next!=null || nodeToMove.prev!=null) remove(nodeToMove);
             //insert node
             if (node.equals(this.head)) {
-                this.head.prev = nodeToMove;
-                this.head = nodeToMove;
-                this.head.prev = null;
-            } else if (node.equals(this.tail)) {
-                this.tail.next = nodeToMove;
-                nodeToMove.prev = this.tail;
-                this.tail = nodeToMove;
-                this.tail.next = null;
+                setHead(nodeToMove);
             } else {
-                prev = node.prev;
+                Node prev = node.prev;
                 nodeToMove.next = node;
                 nodeToMove.prev = prev;
                 prev.next = nodeToMove;
             }
-
         }
 
         public void insertAfter(Node node, Node nodeToInsert) {
-            // Write your code here.
+            if(nodeToInsert.next!=null || nodeToInsert.prev!=null)  remove(nodeToInsert);
+           if (node.equals(this.tail)) {
+                setTail(nodeToInsert);
+            } else {
+                Node next = node.next;
+                node.next=nodeToInsert;
+                nodeToInsert.next = next;
+                nodeToInsert.prev = node;
+                next.prev = nodeToInsert;
+            }
         }
 
         public void insertAtPosition(int position, Node nodeToInsert) {
-            // Write your code here.
+            int count=1;
+            Node pointer=this.head;
+            while (count<position){
+                    count++;
+                try{
+                    pointer=pointer.next;
+                }catch(NullPointerException e){
+                    System.out.println("Index doesn't exist");
+                    break;
+                }
+            }
+            insertBefore(pointer,nodeToInsert);
         }
 
         public void removeNodesWithValue(int value) {
-            // Write your code here.
+            remove(noder(value));
         }
 
         public void remove(Node node) {
-            // Write your code here.
+            if (node.equals(this.head)) {
+                this.head = node.next;
+                this.head.prev = null;
+            } else if (node.equals(this.tail)) {
+                this.tail = node.prev;
+                this.tail.next = null;
+            } else {
+                //set the pointers to prev and next nodes
+                Node prev = node.prev;
+                Node next = node.next;
+                //cut the node from the chain
+                prev.next = next;
+                next.prev = prev;
+            }
         }
 
         public boolean containsNodeWithValue(int value) {
-            // Write your code here.
-            return false;
+            return noder(value) != null;
         }
 
         public Node noder(int val) {
@@ -103,14 +114,15 @@ class DoublyLinkedList {
             }
             return null;
         }
-        public int[] listVisualising(){
+
+        public int[] listVisualising() {
             Node pointer = this.head;
-            List<Integer> res=new ArrayList<>();
+            List<Integer> res = new ArrayList<>();
             while (pointer != null) {
                 res.add(pointer.value);
                 pointer = pointer.next;
             }
-            int[] array = res.stream().mapToInt(i->i).toArray();
+            int[] array = res.stream().mapToInt(i -> i).toArray();
             return array;
         }
     }
@@ -135,8 +147,14 @@ class Runner {
         dll.setHead(new DoublyLinkedList.Node(1));
         dll.setTail(new DoublyLinkedList.Node(106885));
         System.out.println(Arrays.toString(dll.listVisualising()));
-        dll.insertBefore(dll.noder(106885), dll.noder(1));
+        dll.insertBefore(dll.noder(1), new DoublyLinkedList.Node(50320));
         System.out.println(Arrays.toString(dll.listVisualising()));
+        dll.insertAfter(dll.noder(50320), new DoublyLinkedList.Node(500));
+        System.out.println(Arrays.toString(dll.listVisualising()));
+        dll.insertAtPosition(44, new DoublyLinkedList.Node(666));
+        System.out.println(Arrays.toString(dll.listVisualising()));
+        System.out.println(dll.containsNodeWithValue(1));
+
     }
 }
 
