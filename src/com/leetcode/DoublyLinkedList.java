@@ -39,7 +39,7 @@ class DoublyLinkedList {
         }
 
         public void insertBefore(Node node, Node nodeToMove) { //move existing node to position before
-            if(nodeToMove.next!=null || nodeToMove.prev!=null) remove(nodeToMove);
+            if (nodeToMove.next != null || nodeToMove.prev != null) remove(nodeToMove);
             //insert node
             if (node.equals(this.head)) {
                 setHead(nodeToMove);
@@ -52,12 +52,12 @@ class DoublyLinkedList {
         }
 
         public void insertAfter(Node node, Node nodeToInsert) {
-            if(nodeToInsert.next!=null || nodeToInsert.prev!=null)  remove(nodeToInsert);
-           if (node.equals(this.tail)) {
+            if (nodeToInsert.next != null || nodeToInsert.prev != null) remove(nodeToInsert);
+            if (node.equals(this.tail)) {
                 setTail(nodeToInsert);
             } else {
                 Node next = node.next;
-                node.next=nodeToInsert;
+                node.next = nodeToInsert;
                 nodeToInsert.next = next;
                 nodeToInsert.prev = node;
                 next.prev = nodeToInsert;
@@ -65,18 +65,18 @@ class DoublyLinkedList {
         }
 
         public void insertAtPosition(int position, Node nodeToInsert) {
-            int count=1;
-            Node pointer=this.head;
-            while (count<position){
-                    count++;
-                try{
-                    pointer=pointer.next;
-                }catch(NullPointerException e){
+            int count = 1;
+            Node pointer = this.head;
+            while (count < position) {
+                count++;
+                try {
+                    pointer = pointer.next;
+                } catch (NullPointerException e) {
                     System.out.println("Index doesn't exist");
                     break;
                 }
             }
-            insertBefore(pointer,nodeToInsert);
+            insertBefore(pointer, nodeToInsert);
         }
 
         public void removeNodesWithValue(int value) {
