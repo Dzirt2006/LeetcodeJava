@@ -12,7 +12,7 @@ class NodeList {
     }
 }
 
-public class LinkedList {
+public class LinkedListLeetCode {
 
 }
 
