@@ -249,30 +249,55 @@ public class Problems {
         HashMap<Integer, Integer> store = new HashMap<>(inpArr.length);
 
         int rank = 1;
-            for (int i = 0; i < arr.length; i++) {
-                if (i > 0) {
-                    if (arr[i] > arr[i - 1]) {
-                        rank++;
-                    }
+        for (int i = 0; i < arr.length; i++) {
+            if (i > 0) {
+                if (arr[i] > arr[i - 1]) {
+                    rank++;
                 }
-                store.put(arr[i],rank);
             }
+            store.put(arr[i], rank);
+        }
         for (int i = 0; i < inpArr.length; i++) {
-           res[i]= store.get(inpArr[i]);
+            res[i] = store.get(inpArr[i]);
         }
         return res;
     }
+
     //--------------------------------------------------------------------------------------------------------------344------------------
     public void reverseString(char[] s) {
-        int left=0;
-        int right=s.length-1;
-        while(left<right){
-            char temp=s[left];
-            s[left]=s[right];
-            s[right]=temp;
+        int left = 0;
+        int right = s.length - 1;
+        while (left < right) {
+            char temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
             left++;
             right--;
         }
+    }
+
+    //--------------------------------------------------------------------------------------------------------------14. Longest Common Prefix------------------
+
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length<1) return "";
+        String firstEle = strs[0];
+        String result = "";
+        for (int i = 0; i < firstEle.length(); i++) {
+            try {
+                char prefix = firstEle.charAt(i);
+                for (int j = 0; j < strs.length; j++) {
+                    char temp = strs[j].charAt(i);
+                    if (prefix != temp) {
+                        return result;
+                    }
+                }
+                result+=prefix;
+            }catch(StringIndexOutOfBoundsException e){
+                return result;
+            }
+
+        }
+        return result;
     }
 
 

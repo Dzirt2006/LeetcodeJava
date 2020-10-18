@@ -20,10 +20,12 @@ public class MainLeetCode {
         System.out.println(instance);
 //        System.out.println(Arrays.toString(instance.arrayRankTransform(new int[]{1,1,1})));
         //trees
+        System.out.println(instance.longestCommonPrefix(new String[]{"dogssdfdfdfdf","racecar","car"}));
+
         BinaryTree tree = new BinaryTree();
 //        System.out.println(tree.maxDepth(tree.mainTree));
 
         Double num=Double.valueOf("120D");
-        System.out.println(num);
+//        System.out.println(num);
     }
 }
