@@ -194,12 +194,6 @@ public class Problems {
 
     //------------------------------------------------------------------------------------535  Encode and Decode TinyURL-----------------------------------------------------------------
 
-    //---------------------------------------------------------------------------------Longest Palindrome------?????????????------------------------------------
-    public int longestPalindrome(String s) {
-
-        return 0;
-    }
-
     public int[] intersection(int[] nums1, int[] nums2) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int[] arr = new int[Math.min(nums1.length, nums2.length)];
@@ -279,7 +273,7 @@ public class Problems {
     //--------------------------------------------------------------------------------------------------------------14. Longest Common Prefix------------------
 
     public String longestCommonPrefix(String[] strs) {
-        if(strs.length<1) return "";
+        if (strs.length < 1) return "";
         String firstEle = strs[0];
         String result = "";
         for (int i = 0; i < firstEle.length(); i++) {
@@ -291,13 +285,52 @@ public class Problems {
                         return result;
                     }
                 }
-                result+=prefix;
-            }catch(StringIndexOutOfBoundsException e){
+                result += prefix;
+            } catch (StringIndexOutOfBoundsException e) {
                 return result;
             }
 
         }
         return result;
+    }
+
+    //----------------------------------------------------------------------------5. Longest Palindromic Substring--------------------------------------------
+    public String longestPalindrome(String s) {
+        if (s.length() == 1) return s;
+        Set<String> substr = new HashSet<>();
+        StringBuilder temp = new StringBuilder();
+
+        //add all possible substrings to the Set
+        for (int i = 0; i < s.length() - 1; i++) {
+            temp.append(s.charAt(i));
+            substr.add(temp.toString());
+            for (int j = i + 1; j < s.length(); j++) {
+                temp.append(s.charAt(j));
+                substr.add(temp.toString());
+            }
+            temp.setLength(0);
+        }
+
+        //run through the set and delete all now palindromic strings
+        Iterator<String> iterator = substr.iterator();
+        while (iterator.hasNext()) {
+            String iterS = iterator.next();
+            int left = 0;
+            int right = iterS.length() - 1;
+            while (left < right) {
+                if (iterS.charAt(left) != iterS.charAt(right)) {
+                    iterator.remove();
+                    break;
+                }
+                left++;
+                right--;
+            }
+        }
+        //find the max value string
+        String max = Collections.max(substr, Comparator.comparing(String::length));
+        System.out.println(max);
+
+        return max;
     }
 
 
