@@ -332,7 +332,24 @@ public class Problems {
 
         return max;
     }
+//-------------------------------------------------------------------------90. Subsets II-----------------------------------------//not finished
 
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        Set<ArrayList<Integer>> map = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i; j < nums.length; j++) {
+                arr.add(nums[j]);
+                if (!map.contains(arr)) {
+                    map.add(new ArrayList<>(arr));
+                }
+            }
+            arr.clear();
+        }
+        map.add(arr);
+        System.out.println(map);
+        return new ArrayList<>(map);
+    }
 
 }
 
