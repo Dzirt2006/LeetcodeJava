@@ -338,16 +338,41 @@ public class Problems {
         ArrayList<Integer> arr = new ArrayList<>();
         Set<ArrayList<Integer>> map = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i; j < nums.length; j++) {
-                arr.add(nums[j]);
-                if (!map.contains(arr)) {
-                    map.add(new ArrayList<>(arr));
+            arr.add(nums[i]);
+            System.out.println(arr);
+            if (!map.contains(arr)) {
+                map.add(new ArrayList<>(arr));
+            }
+            try {
+                for (int j = i + 1; j < nums.length; j++) {
+                    arr.add(nums[j]);
+                    System.out.println("Sub"+arr);
+                    if (!map.contains(arr)) {
+                        map.add(new ArrayList<>(arr));
+                    }
+                    try {
+                        for (int n = j + 1; n < nums.length; n++) {
+                            arr.add(nums[n]);
+                            System.out.println("Subsub"+arr);
+                            if (!map.contains(arr)) {
+                                map.add(new ArrayList<>(arr));
+                            }
+                        }
+                        arr.clear();
+                        arr.add(nums[i]);
+                        
+                    } catch (IndexOutOfBoundsException e) {
+                        break;
+                    }
                 }
+            } catch (IndexOutOfBoundsException e) {
+                break;
             }
             arr.clear();
         }
         map.add(arr);
         System.out.println(map);
+        System.out.println(map.size());
         return new ArrayList<>(map);
     }
 

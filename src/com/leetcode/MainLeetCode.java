@@ -18,15 +18,17 @@ public class MainLeetCode {
 //            System.out.println(arr[i]);
 //        }
 //        System.out.println(instance.longestPalindrome("abaxyzzyxf"));
-        instance.subsetsWithDup(new int[]{1, 2, 2});
+//        instance.subsetsWithDup(new int[]{1, 2,3,4});
 //        System.out.println(Arrays.toString(instance.arrayRankTransform(new int[]{1,1,1})));
         //trees
 //        System.out.println(instance.longestCommonPrefix(new String[]{"dogssdfdfdfdf","racecar","car"}));
 
-        BinaryTree tree = new BinaryTree();
+        System.out.println(StringsProblems.runLengthEncoding("AAAAAAAAAAAAABBCCCCDD"));
+
+//        BinaryTree tree = new BinaryTree();
 //        System.out.println(tree.maxDepth(tree.mainTree));
 
-        Double num = Double.valueOf("120D");
+//        Double num = Double.valueOf("120D");
 //        System.out.println(num);
 
 //        Set<ArrayList<Integer>> hs = new HashSet<ArrayList<Integer>>();
