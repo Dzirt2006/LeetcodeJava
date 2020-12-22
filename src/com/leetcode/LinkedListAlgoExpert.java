@@ -1,4 +1,4 @@
-package com.leetcode;
+package src.com.leetcode;
 
 public class LinkedListAlgoExpert {
     public static LinkedList mergeLinkedLists(LinkedList headOne, LinkedList headTwo) {
